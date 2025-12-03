@@ -86,10 +86,3 @@ monkey-test-output.json
 # Temporary export files
 # ===============================
 *.tgz
-
-# ===============================
-# Lockfiles (you can choose one)
-# ===============================
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
