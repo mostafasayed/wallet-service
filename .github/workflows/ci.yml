@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm install
@@ -28,4 +29,4 @@ jobs:
         run: npm run typecheck
 
       - name: Run tests
-        run: npm run test:all
+        run: npm test
