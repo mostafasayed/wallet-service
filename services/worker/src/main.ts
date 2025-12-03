@@ -34,7 +34,7 @@ async function bootstrap() {
     ],
   });
 
-  const app = await NestFactory.createApplicationContext(WorkerModule, { logger });
+  await NestFactory.createApplicationContext(WorkerModule, { logger });
   console.log('Worker started');
 }
 

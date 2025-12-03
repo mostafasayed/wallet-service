@@ -6,7 +6,6 @@ import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import * as path from 'path';
 import * as fs from 'fs';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import { setupSwagger } from './cli/swagger';
 
