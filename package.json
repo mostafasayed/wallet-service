@@ -1,0 +1,43 @@
+{
+    "name": "wallet-service",
+    "private": true,
+    "workspaces": [
+        "services/*",
+        "libs/*"
+    ],
+    "scripts": {
+        "prepare": "husky install",
+        "dev:api": "npm run build:libs && npm run start:dev -w services/api",
+        "dev:worker": "npm run build:libs && npm run start:dev -w services/worker",
+        "test:api": "npm test --workspace=api",
+        "test:worker": "npm test --workspace=worker",
+        "test": "npm run test:api && npm run test:worker",
+        "monkey-test": "node tools/monkey-test.js",
+        "build:libs": "cd libs/common && npx tsc -p tsconfig.json && cd ../db-orm && npx tsc -p tsconfig.json",
+        "build:api": "npm run build:libs && npm run build -w services/api",
+        "build:worker": "npm run build:libs && npm run build -w services/worker",
+        "build": "npm run build -w services/api && npm run build -w services/worker",
+        "start:api": "npm run start:dev -w services/api",
+        "start:worker": "npm run start:dev -w services/worker",
+        "lint": "npm run lint --workspace=api && npm run lint --workspace=worker",
+        "typecheck": "npm run typecheck --workspace=api && npm run typecheck --workspace=worker"
+    },
+    "version": "1.0.0",
+    "main": "index.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "husky": "^9.1.7",
+        "lint-staged": "^16.2.7",
+        "node-fetch": "^3.3.2"
+    },
+    "lint-staged": {
+        "**/*.ts": [
+            "prettier --write",
+            "eslint --fix",
+            "git add"
+        ]
+    }
+}

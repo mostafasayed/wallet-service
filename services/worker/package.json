@@ -1,0 +1,42 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "build": "nest build",
+    "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "jest --config jest.config.ts",
+    "test:watch": "jest --watch --config jest.config.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@nestjs/common": "^11.1.9",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.9",
+    "@nestjs/typeorm": "^11.0.0",
+    "@wallet/common": "1.0.0",
+    "@wallet/db-orm": "1.0.0",
+    "amqplib": "^0.10.9",
+    "nest-winston": "^1.10.2",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "source-map-support": "^0.5.21",
+    "typeorm": "^0.3.27",
+    "winston": "^3.18.3"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.14",
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

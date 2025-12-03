@@ -1,0 +1,30 @@
+{
+  "name": "@wallet/common",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./enums/*": {
+      "types": "./dist/enums/*.d.ts",
+      "default": "./dist/enums/*.js"
+    },
+    "./events/*": {
+      "types": "./dist/events/*.d.ts",
+      "default": "./dist/events/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@wallet/db-orm",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./entities": {
+      "types": "./dist/entities/index.d.ts",
+      "default": "./dist/entities/index.js"
+    },
+    "./entities/*": {
+      "types": "./dist/entities/*.d.ts",
+      "default": "./dist/entities/*.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "typeorm": "^0.3.27"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

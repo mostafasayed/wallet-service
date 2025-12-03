@@ -1,0 +1,281 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/wallet/{id}/deposit": {
+      "post": {
+        "operationId": "WalletController_deposit",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Wallet ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepositDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Deposit successful"
+          }
+        },
+        "summary": "Deposit funds into a wallet",
+        "tags": [
+          "wallet"
+        ]
+      }
+    },
+    "/wallet/{id}/withdraw": {
+      "post": {
+        "operationId": "WalletController_withdraw",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Wallet ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WithdrawDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Withdrawal successful"
+          },
+          "400": {
+            "description": "Insufficient funds or invalid request"
+          }
+        },
+        "summary": "Withdraw funds from a wallet",
+        "tags": [
+          "wallet"
+        ]
+      }
+    },
+    "/wallet/{id}/transfer": {
+      "post": {
+        "operationId": "WalletController_transfer",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Sender Wallet ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Transfer initiated/completed"
+          },
+          "400": {
+            "description": "Invalid transfer or insufficient funds"
+          }
+        },
+        "summary": "Transfer funds between wallets",
+        "tags": [
+          "wallet"
+        ]
+      }
+    },
+    "/wallet/{id}": {
+      "get": {
+        "operationId": "WalletController_getWallet",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Wallet ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wallet details returned"
+          }
+        },
+        "summary": "Get wallet details",
+        "tags": [
+          "wallet"
+        ]
+      }
+    },
+    "/wallet/{id}/history": {
+      "get": {
+        "operationId": "WalletController_getHistory",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Wallet ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Limit number of records (default 50)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "required": false,
+            "in": "query",
+            "description": "Get records before this date",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "History returned"
+          }
+        },
+        "summary": "Get wallet transaction history",
+        "tags": [
+          "wallet"
+        ]
+      }
+    },
+    "/wallet/{id}/stats": {
+      "get": {
+        "operationId": "WalletController_getStats",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Wallet ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Statistics returned"
+          }
+        },
+        "summary": "Get wallet statistics",
+        "tags": [
+          "wallet"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Wallet Service API",
+    "description": "API for managing wallets, deposits, withdrawals, and transfers",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "DepositDto": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "example": 100,
+            "description": "Amount to deposit"
+          },
+          "requestId": {
+            "type": "string",
+            "example": "req-123",
+            "description": "Idempotency key"
+          }
+        },
+        "required": [
+          "amount"
+        ]
+      },
+      "WithdrawDto": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "example": 50,
+            "description": "Amount to withdraw"
+          },
+          "requestId": {
+            "type": "string",
+            "example": "req-456",
+            "description": "Idempotency key"
+          }
+        },
+        "required": [
+          "amount"
+        ]
+      },
+      "TransferDto": {
+        "type": "object",
+        "properties": {
+          "toWalletId": {
+            "type": "string",
+            "example": "wallet-2",
+            "description": "Recipient wallet ID"
+          },
+          "amount": {
+            "type": "number",
+            "example": 25,
+            "description": "Amount to transfer"
+          },
+          "requestId": {
+            "type": "string",
+            "example": "req-789",
+            "description": "Idempotency key"
+          }
+        },
+        "required": [
+          "toWalletId",
+          "amount"
+        ]
+      }
+    }
+  }
+}
